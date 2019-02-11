@@ -1,6 +1,25 @@
 /*What we are going to do in this lecture:
 swithMap()
+unsubscribe the old observable and subscribe to the newer one
+ex search: if you type something, the type will be cancelled and new typed words will
+be taken as subscribed
+can be used for http request where you will type something to search and
+while you are typing if you type next word, the previous word search request will be
+subscribed and the next full word will be taken for process subscription
+eg: in a sequence of emitted value by observable 1,2,3,4,5
+if one is emitted, 1 will be subscribed but if any new value will be emitted, previous
+observable 1 will be unsubscribed
 
+debounceTime(millisecond) //This operator will wait for the given millisecond and will check if
+the emitted value is stable for the above millisecond time then it will consider that value
+as stable otherwise it will discard that value consdering it unstable
+time 500 ms
+if value 1 is recevied and not further value recevied within a 500ms
+1 => confirmed
+2 and 3 recevied with in 500ms, 3 will be checked for 500ms by discarding value2
+
+    distinctUntilChanged()  //this below operator will filter the unique value by combining the current and previous emited value from stream
+    1,2,2,2,3,4,4,4 => 1,2,3,4
 */
 
 import {
@@ -91,6 +110,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
      * we will create a loadLesson() method
      *  */
     const initialLessons$ = this.loadLessons();
+    //Here we have concatenated the first intital default search list and user search list
     this.lessons$ = concat(initialLessons$, searchLessons$);
   }
 
