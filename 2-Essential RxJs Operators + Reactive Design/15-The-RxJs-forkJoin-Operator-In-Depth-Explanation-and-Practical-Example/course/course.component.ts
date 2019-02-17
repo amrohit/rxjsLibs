@@ -1,20 +1,23 @@
 /*What we are going to do in this lecture:
 we going to introduce rxjs forkJoin operator
-The forkJoin operator allows us to launch serveral test in parallel, wait for the test to complete, then we can get back
+The forkJoin operator allows us to launch serveral test in parallel, wait for the test to complete,
+ then we can get back
 the result of each task and use those combine results together
 
 we are going to use the course component to give how the forkJoin works, it might be used with http request .
 we re going to launch one course observable const course$ that is going to fetch the course from the http url
 then we are going to create a second observable which is going tobe a lesson observable
 These observable is going to be fetched from backend a list of lessons const lesson$ for loadLesson()
-lets say we want to trigger the both method at a same time, send them both at the backend same time, have the backend serve
+lets say we want to trigger the both method at a same time, send them both at the backend same time, have the
+backend serve
 the each request parallel and  then wait for the result of the
 both course observable and lesson observable to return from the
 backend and only at that moment we would live to trigger some
 extra logic when we have the course$ and the lesson$
 
 This type of logic can be easily implemented using the forkJoin operator
-So the name of the opeator come from facts, like we are forking two streams and then we are joining the results of streams of
+So the name of the opeator come from facts, like we are forking two streams and then we are joining the results
+of streams of
 together when both request are completed
 so as usual we need to subscribe the forkJoin or otherwise nothing will happen or neither any of these two http requests
 will be triggered
@@ -34,7 +37,6 @@ then what we are going to get here is the last value emitted before completion
 might emits multiple values then eventually emits the final value
 and then they complete
 */
-
 
 import {
   AfterViewInit,
